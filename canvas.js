@@ -2,18 +2,13 @@
  * Canvas dragging stuff *
  *************************/
 
-var MovableItem = function(url, x, y) {
-	this.image = new Image;
-	this.image.src = url;
-	var that = this;
-	this.image.onload = function() {
-		that.width = this.width;
-		that.height = this.height;
-		that.x = x;
-		that.y = y;
-		that.isDragged = false;
-		that.render(ctx);
-	}
+var MovableItem = function(image, x, y) {
+	this.image = image;
+	this.width = image.width;
+	this.height = image.height;
+	this.x = x;
+	this.y = y;
+	this.isDragged = false;
 
 	this.render = function(ctx) {
 		ctx.save();
@@ -24,24 +19,43 @@ var MovableItem = function(url, x, y) {
 	this.moveTo = function(x, y) {
 		this.x = x;
 		this.y = y;
-		resetCanvas();
+		tracker.resetCanvas(ctx);
 		this.render(ctx);
 	}
+
+	this.isHit = function(coords) {
+		return (coords.x >= this.x && coords.x <= this.x + this.width &&
+			coords.y >= this.y && coords.y <= this.y + this.height);
+	}
+
+	this.render(ctx);
 }
 
-function resetCanvas() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	ctx.drawImage(backdrop, 0, 0);
-}
-
-function isHit(obj, coords) {
-	return (coords.x >= obj.x && coords.x <= obj.x + obj.width &&
-		coords.y >= obj.y && coords.y <= obj.y + obj.height);
-}
-
-function Tracker(canvas) {
+function Tracker(canvas, imageURLs) {
 	this.startX = 0;
 	this.startY = 0;
+	this.images = [];
+	var that = this;
+	var numImages = imageURLs.length;
+
+	for (let i = 0; i < imageURLs.length; ++i) {
+		this.images[i] = new Image;
+		this.images[i].src = imageURLs[i];
+		this.images[i].onload = function() {
+			if (--numImages == 0) {
+				canvas.width = that.images[0].width;
+				canvas.height = that.images[0].height;
+				ctx.drawImage(that.images[0], 0, 0);
+				that.textBlock = new MovableItem(that.images[1], 250, 250);
+			}
+		};
+	}
+
+	this.resetCanvas = function(ctx) {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.drawImage(that.images[0], 0, 0);
+	}
+
 	function getCoords(event) {
 		var rect = canvas.getBoundingClientRect();
 		if (event.touches) {
@@ -60,27 +74,27 @@ function Tracker(canvas) {
 	function onDown(event) {
 		event.preventDefault();
 		var coords = getCoords(event);
-		if (isHit(textBlock, coords))
-			textBlock.isDragged = true;
-		this.startX = coords.x;
-		this.startY = coords.y;
+		if (that.textBlock.isHit(coords))
+			that.textBlock.isDragged = true;
+		that.startX = coords.x;
+		that.startY = coords.y;
 	}
 
 	function onUp(event) {
 		event.preventDefault();
-		textBlock.isDragged = false;
+		that.textBlock.isDragged = false;
 	}
 
 	function onMove(event) {
 		event.preventDefault();
-		if (textBlock.isDragged) {
+		if (that.textBlock.isDragged) {
 			var coords = getCoords(event);
-			textBlock.x += coords.x - this.startX;
-			textBlock.y += coords.y - this.startY;
-			this.startX = coords.x;
-			this.startY = coords.y;
-			resetCanvas();
-			textBlock.render(ctx);
+			that.textBlock.x += coords.x - that.startX;
+			that.textBlock.y += coords.y - that.startY;
+			that.startX = coords.x;
+			that.startY = coords.y;
+			that.resetCanvas(ctx);
+			that.textBlock.render(ctx);
 		}
 	}
 
@@ -111,19 +125,15 @@ function Tracker(canvas) {
 
 function onCheck(event) {
 	var status = document.getElementById('status');
-	var dx = Math.abs(textBlock.x - 50);
-	var dy = Math.abs(textBlock.y - 100);
 	status.innerText = 'По правилу якорных объектов абзац текста надо поместить в левый нижний угол страницы. Текст и ссылки должны быть достаточно близко друг к другу, чтобы образовать прямоугольный модуль.';
 	status.style.display = 'block';
 	
-	let correctImageURL = (
-		textBlock.x > 61 && textBlock.x < 69 &&
-		textBlock.y > 370 && textBlock.y < 386
-	) ? 'img/text-green.png' : 'img/text-red.png';
-	var correctBlock = new MovableItem(
-		correctImageURL, textBlock.x, textBlock.y);
-	console.log({x: textBlock.x, y: textBlock.y});
-	textBlock.moveTo(66, 384);
+	let correctImage = (
+		tracker.textBlock.x > 61 && tracker.textBlock.x < 69 &&
+		tracker.textBlock.y > 370 && tracker.textBlock.y < 386
+	) ? tracker.images[2] : tracker.images[3];
+	tracker.correctBlock = new MovableItem(
+		correctImage, 66, 384);
 	tracker.stop();
 	checkButton.style.display = 'none';
 	nextButton.style.display = 'inline';
@@ -132,10 +142,10 @@ function onCheck(event) {
 	});
 
 	// Google API: https://drive.google.com/uc?export=view&id=
+	// Backdrop:   1CMR_i0BgD5_G1pls9F3hynba1Vv9NE7c
 	// White text: 1CCQVkbqp02YQVZjhouKhbs7REn1YkhRN
 	// Green text: 1T4Jz8yuZ5aI31b72SpV3qUjLYapyW58F
 	// Red text:   15P7H8v_0SnebcBwxfbM_IUf51Ll992jY
-	// Backdrop:   1CMR_i0BgD5_G1pls9F3hynba1Vv9NE7c
 }
 
 /**********************
@@ -150,17 +160,12 @@ ctx.textBaseline = 'middle';
 ctx.textAlign = 'center';
 ctx.fillText('Пожалуйста, подождите…', 320, 240);
 
-var backdrop = new Image;
-backdrop.src = 'img/backdrop.png';
-var textBlock;
-backdrop.onload = function() {
-	canvas.width = backdrop.width;
-	canvas.height = backdrop.height;
-	ctx.drawImage(backdrop, 0, 0);
-	textBlock = new MovableItem('img/text.png', 250, 250);
-}
-
-var tracker = new Tracker(canvas);
+var tracker = new Tracker(canvas, [
+	'img/backdrop.png',
+	'img/text.png',
+	'img/text-green.png',
+	'img/text-red.png'
+]);
 
 var checkButton = document.getElementById('check');
 var nextButton = document.getElementById('next');
