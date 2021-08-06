@@ -4,21 +4,63 @@
 	<meta charset="utf-8">
 	<title>Drag, drop, resize</title>
 	<style>
+		body {
+			margin: 0;
+			font-family: Arial, sans-serif;
+		}
+		button {
+			font-size: 1.5em;
+			font-weight: 700;
+			padding: 15px;
+			padding-bottom: 20px;
+			border-radius: 15px;
+		}
 		#check {
-			margin-bottom: 12px;
-			margin-right: 12px;
+			color: white;
+			background-color: #5a5;
+			border: solid #0a0 1px;
+		}
+		#next {
+			color: #5a5;
+			background: white;
+			border: solid #5a5 1px;
+			display: none;
+		}
+		#status {
+			max-width: 30em;
+			text-align: left;
+			margin-left: 60px;
+			margin-top: -30px;
+			margin-bottom: 40px;
+			display: none;
+		}
+		.header {
+			margin-left: 20px;
+			margin-bottom: -20px;
+		}
+		.header > p {
+			max-width: 21em;
+		}
+		.container {
+			width: 950px;
+			text-align: center;
+			margin: 0 auto;
 		}
 	</style>
 </head>
 <body>
-	<div>
+	<div class="header">
+		<h1>Якорные объекты</h1>
+		<p>Разместите абзац текста на макете по&nbsp;правилу якорных объектов. Не забудьте учесть правило внутреннего и внешнего.</p>
+	</div>
+	<div class="container">
+		<div>
+			<canvas width="640" height="480" id="plotArea" />
+		</div>
+		<p id="status"></p>
 		<button id="check">Проверить</button>
-		<span>Разместите текст на странице.</span>
+		<button id="next">Следующее</button>
 	</div>
-	<div>
-		<canvas width="640" height="480" id="plotArea" />
-	</div>
-	<div><span id="status"></span></div>
 
 	<script src="canvas.js"></script>
 </body>
