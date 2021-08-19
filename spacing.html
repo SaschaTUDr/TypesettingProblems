@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Установите правильные параметры тектса</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+		:root {
+			--background-color: #eee;
+		}
+		body {
+			margin: 0;
+			background-color: var(--background-color);
+			font-family: 'Open Sans', Arial, sans-serif;
+		}
+		h1, p {
+			margin: 0;
+		}
+		button {
+			font-size: 1.5em;
+			font-weight: 700;
+			padding: 10px 25px;
+			padding-bottom: 15px;
+			border-radius: 15px;
+			border: solid #0a0 1px;
+		}
+		.buttons {
+			margin-top: 40px;
+			text-align: center;
+		}
+		.buttons > button {
+			margin: 0 0 0 15px;
+		}
+		.buttons > button:first-child {
+			margin: 0;
+		}
+		#grid {
+			display: grid;
+			grid-template-columns: 150px 1fr;
+			row-gap: 0.6em;
+			margin: 0 10px;
+		}
+		#container {
+			max-width: 100%;
+			width: 600px;
+			margin: 100px auto;
+		}
+		#canvas {
+			background-color: #fff;
+			box-sizing: border-box;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			padding: 40px 60px;
+			margin-bottom: 40px;
+			height: 500px;
+			position: relative;
+		}
+		#submit {
+			color: #fff;
+			background-color: #5a5;
+		}
+		#check {
+			color: #5a5;
+			background-color: var(--background-color);
+		}
+		#answer {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			border-radius: 0 0 5px 5px;
+			width: 100%;
+			box-sizing: border-box;
+			padding: 10px 20px;
+		}
+		.hidden {
+			display: none;
+		}
+		.green {
+			color: #0f5132;
+			background-color: #d1e7dd;
+			border-top: solid 1px #badbcc;
+		}
+		.red {
+			color: #842029;
+			background-color: #f8d7da;
+			border-top: solid 1px #f5c2c7;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="canvas">
+			<h1 id="header">Платежное кольцо — будущее бесконтактной оплаты</h1>
+			<p id="text">Сегодня покупки можно оплачивать не только наличными и картой, но с помощью технологии бесконтактной оплаты. Крупные российские банки предлагают интеграцию своих карт с телефонами и смарт-часами. Пришло время сделать следующий шаг — «Юный техник» совместно с «Полимербанком» представляет первое в России платежное кольцо.</p>
+			<div id="answer" class="hidden">Good</div>
+		</div>
+		<div id="grid">
+			<label for="h-lead">Header leading</label>
+			<input type="range" min="0.8" max="2" value="1" step="0.1" id="h-lead" name="h-lead">
+			<label for="t-lead">Text leading</label>
+			<input type="range" min="0.8" max="2" value="1" step="0.1" id="t-lead" name="t-lead">
+			<label for="h-space">Header space</label>
+			<input type="range" min="0" max="50" value="0" step="2" id="h-space" name="h-space">
+		</div>
+		<div class="buttons">
+			<button id="submit">Submit</button>
+			<button id="check">Check</button>
+		</div>
+	</div>
+	<script>
+		var h = document.getElementById('header');
+		var t = document.getElementById('text');
+		var hl = document.getElementById('h-lead');
+		var tl = document.getElementById('t-lead');
+		var hs = document.getElementById('h-space');
+		var submit = document.getElementById('submit');
+		var check = document.getElementById('check');
+		var answer = document.getElementById('answer');
+
+		var setAll = function() {
+			h.style.lineHeight = hl.value;
+			t.style.lineHeight = tl.value;
+			h.style.marginBottom = hs.value + 'px';
+		}
+		setAll();
+
+		hl.addEventListener('input', function() {
+			h.style.lineHeight = hl.value;
+		});
+		tl.addEventListener('input', function() {
+			t.style.lineHeight = tl.value;
+		});
+		hs.addEventListener('input', function() {
+			h.style.marginBottom = hs.value + 'px';
+		});
+		check.addEventListener('mousedown', function() {
+			h.style.lineHeight = '1.2';
+			t.style.lineHeight = '1.5';
+			h.style.marginBottom = '26px';
+		});
+		check.addEventListener('mouseup', setAll);
+		check.addEventListener('mouseout', setAll);
+		submit.addEventListener('click', function() {
+			if (hl.value == 1.2 &&
+					tl.value >= 1.4 && tl.value <= 1.5 &&
+					hs.value >= 24 && hs.value <= 28) {
+				answer.classList.remove('red');
+				answer.classList.add('green');
+				answer.innerHTML = '<strong>Yes, that looks nice.</strong> Everything is bla-bla-bla.';
+			} else {
+				answer.classList.remove('green');
+				answer.classList.add('red');
+				answer.innerHTML = '<strong>You can do better.</strong> Everything is bla-bla-bla.';
+			}
+			answer.classList.remove('hidden');
+		});
+	</script>
+</body>
+</html>
