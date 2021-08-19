@@ -1,0 +1,66 @@
+@keyframes solution {
+	to {left: 66px; top: 384px;}
+}
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+}
+button {
+	font-size: 1.5em;
+	font-weight: 700;
+	padding: 15px;
+	padding-bottom: 20px;
+	border-radius: 15px;
+}
+#canvas {
+	position: relative;
+	display: inline-block;
+}
+#check {
+	color: white;
+	background-color: #5a5;
+	border: solid #0a0 1px;
+}
+#next {
+	color: #5a5;
+	background: white;
+	border: solid #5a5 1px;
+	display: none;
+}
+#status {
+	max-width: 30em;
+	text-align: left;
+	margin-left: 60px;
+	margin-top: -30px;
+	margin-bottom: 40px;
+	display: none;
+}
+#text-block {
+	position: absolute;
+}
+.container {
+	width: 950px;
+	text-align: center;
+	margin: 0 auto;
+}
+.header {
+	margin-left: 20px;
+	margin-bottom: -20px;
+}
+.header > h1 {
+	margin-bottom: 5px;
+}
+.header > p {
+	max-width: 21em;
+	margin-top: 0;
+}.solution {
+	animation: solution 1s forwards;
+}
+.status-fail {
+	color: #842029;
+	background-color: #f8d7da;
+}
+.status-pass {
+	color: #0f5132;
+	background-color: #d1e7dd;
+}
