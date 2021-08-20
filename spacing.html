@@ -56,11 +56,11 @@
 			height: 500px;
 			position: relative;
 		}
-		#submit {
+		#check {
 			color: #fff;
 			background-color: #5a5;
 		}
-		#check {
+		#peek {
 			color: #5a5;
 			background-color: var(--background-color);
 		}
@@ -71,10 +71,9 @@
 			border-radius: 0 0 5px 5px;
 			width: 100%;
 			box-sizing: border-box;
-			padding: 10px 20px;
 		}
-		.hidden {
-			display: none;
+		#answer > div {
+			padding: 10px 20px;
 		}
 		.green {
 			color: #0f5132;
@@ -93,7 +92,6 @@
 		<div id="canvas">
 			<h1 id="header">Платежное кольцо — будущее бесконтактной оплаты</h1>
 			<p id="text">Сегодня покупки можно оплачивать не только наличными и картой, но с помощью технологии бесконтактной оплаты. Крупные российские банки предлагают интеграцию своих карт с телефонами и смарт-часами. Пришло время сделать следующий шаг — «Юный техник» совместно с «Полимербанком» представляет первое в России платежное кольцо.</p>
-			<div id="answer" class="hidden">Good</div>
 		</div>
 		<div id="grid">
 			<label for="h-lead">Header leading</label>
@@ -104,19 +102,21 @@
 			<input type="range" min="0" max="50" value="0" step="2" id="h-space" name="h-space">
 		</div>
 		<div class="buttons">
-			<button id="submit">Submit</button>
 			<button id="check">Check</button>
+			<button id="peek">Peek</button>
 		</div>
 	</div>
 	<script>
+		var canvas = document.getElementById('canvas');
 		var h = document.getElementById('header');
 		var t = document.getElementById('text');
 		var hl = document.getElementById('h-lead');
 		var tl = document.getElementById('t-lead');
 		var hs = document.getElementById('h-space');
-		var submit = document.getElementById('submit');
 		var check = document.getElementById('check');
-		var answer = document.getElementById('answer');
+		var peek = document.getElementById('peek');
+
+		var timeoutId = undefined;
 
 		var setAll = function() {
 			h.style.lineHeight = hl.value;
@@ -134,26 +134,56 @@
 		hs.addEventListener('input', function() {
 			h.style.marginBottom = hs.value + 'px';
 		});
-		check.addEventListener('mousedown', function() {
+		peek.addEventListener('mousedown', function() {
 			h.style.lineHeight = '1.2';
 			t.style.lineHeight = '1.5';
 			h.style.marginBottom = '26px';
 		});
-		check.addEventListener('mouseup', setAll);
-		check.addEventListener('mouseout', setAll);
-		submit.addEventListener('click', function() {
-			if (hl.value == 1.2 &&
-					tl.value >= 1.4 && tl.value <= 1.5 &&
-					hs.value >= 24 && hs.value <= 28) {
-				answer.classList.remove('red');
-				answer.classList.add('green');
-				answer.innerHTML = '<strong>Yes, that looks nice.</strong> Everything is bla-bla-bla.';
-			} else {
-				answer.classList.remove('green');
-				answer.classList.add('red');
-				answer.innerHTML = '<strong>You can do better.</strong> Everything is bla-bla-bla.';
+		peek.addEventListener('mouseup', setAll);
+		peek.addEventListener('mouseout', setAll);
+		check.addEventListener('click', function() {
+			console.log(timeoutId);
+			if (typeof timeoutId === 'number') {
+				clearTimeout(timeoutId);
 			}
-			answer.classList.remove('hidden');
+			if (document.getElementById('answer'))
+				document.getElementById('answer').remove();
+			let answer = canvas.appendChild(document.createElement('div'));
+			answer.id = 'answer';
+			timeoutId = setTimeout(function() {
+				document.getElementById('answer').remove();
+				timeoutId = undefined;
+			}, 3000);
+
+			let hla = document.createElement('div');
+			if (hl.value == 1.2) {
+				hla.setAttribute('class', 'green');
+				hla.innerHTML = '<strong>Header leading:</strong> Looks good'
+			} else {
+				hla.setAttribute('class', 'red');
+				hla.innerHTML = '<strong>Header leading:</strong> You can do better'
+			}
+			answer.appendChild(hla);
+			
+			let tla = document.createElement('div');
+			if (tl.value >= 1.4 && tl.value <= 1.5) {
+				tla.setAttribute('class', 'green');
+				tla.innerHTML = '<strong>Text leading:</strong> Looks good'
+			} else {
+				tla.setAttribute('class', 'red');
+				tla.innerHTML = '<strong>Text leading:</strong> You can do better'
+			}
+			answer.appendChild(tla);
+
+			let hsa = document.createElement('div');
+			if (hs.value >= 20 && hs.value <= 30) {
+				hsa.setAttribute('class', 'green');
+				hsa.innerHTML = '<strong>Header space:</strong> Looks good'
+			} else {
+				hsa.setAttribute('class', 'red');
+				hsa.innerHTML = '<strong>Header space:</strong> You can do better'
+			}
+			answer.appendChild(hsa);
 		});
 	</script>
 </body>
