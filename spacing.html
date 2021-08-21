@@ -9,6 +9,9 @@
 		:root {
 			--background-color: #eee;
 		}
+		* {
+			box-sizing: border-box;
+		}
 		body {
 			margin: 0;
 			background-color: var(--background-color);
@@ -17,6 +20,10 @@
 		h1, p {
 			margin: 0;
 		}
+		h1 {
+			font-size: 2em;
+			font-weight: 700;
+		}
 		button {
 			font-size: 1.5em;
 			font-weight: 700;
@@ -24,6 +31,21 @@
 			padding-bottom: 15px;
 			border-radius: 15px;
 			border: solid #0a0 1px;
+		}
+		input[type="range"] {
+			margin: 0;
+			height: 1em;
+			width: 100%;
+		}
+		.green {
+			color: #0f5132;
+			background-color: #d1e7dd;
+			/*border: solid 1px #badbcc;*/
+		}
+		.red {
+			color: #842029;
+			background-color: #f8d7da;
+			/*border: solid 1px #f5c2c7;*/
 		}
 		.buttons {
 			margin-top: 40px;
@@ -35,20 +57,24 @@
 		.buttons > button:first-child {
 			margin: 0;
 		}
-		#grid {
-			display: grid;
-			grid-template-columns: 150px 1fr;
-			row-gap: 0.6em;
-			margin: 0 10px;
+		.row {
+			padding: 10px 10px;
+			display: flex;
+		}
+		.col-1 {
+			flex: 1;
+		}
+		.col-3 {
+			flex: 3;
 		}
 		#container {
 			max-width: 100%;
 			width: 600px;
-			margin: 100px auto;
+			margin: 100px auto 0 auto;
 		}
 		#canvas {
 			background-color: #fff;
-			box-sizing: border-box;
+			overflow: hidden;
 			border: 1px solid #ddd;
 			border-radius: 5px;
 			padding: 40px 60px;
@@ -64,26 +90,11 @@
 			color: #5a5;
 			background-color: var(--background-color);
 		}
-		#answer {
-			position: absolute;
-			bottom: 0;
-			left: 0;
+		#grid > .row:first-child {
+			border-radius: 5px 5px 0 0;
+		}
+		#grid > .row:last-child {
 			border-radius: 0 0 5px 5px;
-			width: 100%;
-			box-sizing: border-box;
-		}
-		#answer > div {
-			padding: 10px 20px;
-		}
-		.green {
-			color: #0f5132;
-			background-color: #d1e7dd;
-			border-top: solid 1px #badbcc;
-		}
-		.red {
-			color: #842029;
-			background-color: #f8d7da;
-			border-top: solid 1px #f5c2c7;
 		}
 	</style>
 </head>
@@ -94,12 +105,27 @@
 			<p id="text">Сегодня покупки можно оплачивать не только наличными и картой, но с помощью технологии бесконтактной оплаты. Крупные российские банки предлагают интеграцию своих карт с телефонами и смарт-часами. Пришло время сделать следующий шаг — «Юный техник» совместно с «Полимербанком» представляет первое в России платежное кольцо.</p>
 		</div>
 		<div id="grid">
-			<label for="h-lead">Header leading</label>
-			<input type="range" min="0.8" max="2" value="1" step="0.1" id="h-lead" name="h-lead">
-			<label for="t-lead">Text leading</label>
-			<input type="range" min="0.8" max="2" value="1" step="0.1" id="t-lead" name="t-lead">
-			<label for="h-space">Header space</label>
-			<input type="range" min="0" max="50" value="0" step="2" id="h-space" name="h-space">
+			<div class="row" id="row-h-lead">
+				<div class="col-1">
+					<label for="h-lead">Header leading</label>
+				</div><div class="col-3" id="col-h-lead">
+					<input type="range" min="0.8" max="2" value="1" step="0.1" id="h-lead" name="h-lead">
+				</div>
+			</div>
+			<div class="row" id="row-t-lead">
+				<div class="col-1">
+					<label for="t-lead">Text leading</label>
+				</div><div class="col-3" id="col-t-lead">
+					<input type="range" min="0.8" max="2" value="1" step="0.1" id="t-lead" name="t-lead">
+				</div>
+			</div>
+			<div class="row" id="row-h-space">
+				<div class="col-1">
+					<label for="h-space">Header space</label>
+				</div><div class="col-3" id="col-h-space">
+					<input type="range" min="0" max="50" value="0" step="2" id="h-space" name="h-space">
+				</div>
+			</div>
 		</div>
 		<div class="buttons">
 			<button id="check">Check</button>
@@ -107,12 +133,23 @@
 		</div>
 	</div>
 	<script>
+		// Canvas
 		var canvas = document.getElementById('canvas');
 		var h = document.getElementById('header');
 		var t = document.getElementById('text');
+		// Sliders
 		var hl = document.getElementById('h-lead');
 		var tl = document.getElementById('t-lead');
 		var hs = document.getElementById('h-space');
+		// Grid rows
+		var rhl = document.getElementById('row-h-lead');
+		var rtl = document.getElementById('row-t-lead');
+		var rhs = document.getElementById('row-h-space');
+		// Slider columns
+		var chl = document.getElementById('col-h-lead');
+		var ctl = document.getElementById('col-t-lead');
+		var chs = document.getElementById('col-h-space');
+		// Buttons
 		var check = document.getElementById('check');
 		var peek = document.getElementById('peek');
 
@@ -122,6 +159,11 @@
 			h.style.lineHeight = hl.value;
 			t.style.lineHeight = tl.value;
 			h.style.marginBottom = hs.value + 'px';
+		}
+		var setCorrect = function() {
+			h.style.lineHeight = '1.2';
+			t.style.lineHeight = '1.5';
+			h.style.marginBottom = '26px';
 		}
 		setAll();
 
@@ -134,56 +176,61 @@
 		hs.addEventListener('input', function() {
 			h.style.marginBottom = hs.value + 'px';
 		});
-		peek.addEventListener('mousedown', function() {
-			h.style.lineHeight = '1.2';
-			t.style.lineHeight = '1.5';
-			h.style.marginBottom = '26px';
-		});
+		peek.addEventListener('mousedown', setCorrect);
 		peek.addEventListener('mouseup', setAll);
 		peek.addEventListener('mouseout', setAll);
 		check.addEventListener('click', function() {
-			console.log(timeoutId);
 			if (typeof timeoutId === 'number') {
 				clearTimeout(timeoutId);
 			}
-			if (document.getElementById('answer'))
-				document.getElementById('answer').remove();
-			let answer = canvas.appendChild(document.createElement('div'));
-			answer.id = 'answer';
 			timeoutId = setTimeout(function() {
-				document.getElementById('answer').remove();
+				rhl.setAttribute('class', 'row');
+				rtl.setAttribute('class', 'row');
+				rhs.setAttribute('class', 'row');
+				document.getElementById('temp-ahl').remove();
+				document.getElementById('temp-atl').remove();
+				document.getElementById('temp-ahs').remove();
+				hl.hidden = false;
+				tl.hidden = false;
+				hs.hidden = false;
 				timeoutId = undefined;
 			}, 3000);
 
-			let hla = document.createElement('div');
+			let ahl = document.createElement('span');
+			ahl.id = 'temp-ahl';
 			if (hl.value == 1.2) {
-				hla.setAttribute('class', 'green');
-				hla.innerHTML = '<strong>Header leading:</strong> Looks good'
+				rhl.setAttribute('class', 'row green');
+				ahl.innerHTML = 'Looks good'
 			} else {
-				hla.setAttribute('class', 'red');
-				hla.innerHTML = '<strong>Header leading:</strong> You can do better'
+				rhl.setAttribute('class', 'row red');
+				ahl.innerHTML = 'You can do better'
 			}
-			answer.appendChild(hla);
+			hl.hidden = true;
+			chl.appendChild(ahl);
 			
-			let tla = document.createElement('div');
+			let atl = document.createElement('div');
+			atl.id = 'temp-atl';
 			if (tl.value >= 1.4 && tl.value <= 1.5) {
-				tla.setAttribute('class', 'green');
-				tla.innerHTML = '<strong>Text leading:</strong> Looks good'
+				rtl.setAttribute('class', 'row green');
+				atl.innerHTML = 'Looks good'
 			} else {
-				tla.setAttribute('class', 'red');
-				tla.innerHTML = '<strong>Text leading:</strong> You can do better'
+				rtl.setAttribute('class', 'row red');
+				atl.innerHTML = 'You can do better'
 			}
-			answer.appendChild(tla);
+			tl.hidden = true;
+			ctl.appendChild(atl);
 
-			let hsa = document.createElement('div');
+			let ahs = document.createElement('div');
+			ahs.id = 'temp-ahs';
 			if (hs.value >= 20 && hs.value <= 30) {
-				hsa.setAttribute('class', 'green');
-				hsa.innerHTML = '<strong>Header space:</strong> Looks good'
+				rhs.setAttribute('class', 'row green');
+				ahs.innerHTML = 'Looks good'
 			} else {
-				hsa.setAttribute('class', 'red');
-				hsa.innerHTML = '<strong>Header space:</strong> You can do better'
+				rhs.setAttribute('class', 'row red');
+				ahs.innerHTML = 'You can do better'
 			}
-			answer.appendChild(hsa);
+			hs.hidden = true;
+			chs.appendChild(ahs);
 		});
 	</script>
 </body>
