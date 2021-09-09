@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="demo.css">
+	<script src="js/drag.js"></script>
+	<title>Тренажёр по вёрстке</title>
+</head>
+<body>
+	<div id="screen-container" style="width: 1920px; height: 1200px;">
+		<header>
+			<div class="container">
+				<div id="text-0" class="text">Тренажёр по вёрстке</div>
+				<div id="head-0" class="head">Проверочная работа</div>
+				<div id="note-0" class="note">Сдано <span>1</span> из <span>10</span> заданий</div>
+				<div id="progress-bar">
+					<div id="progress" style="width: 10%;"></div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div id="container-1" class="container">
+				<div id="desc-1" class="desc desc-full">
+					Расположите заголовок и абзац текста согласно правилу якорных объектов
+				</div>
+				<div id="card-1" class="card">
+					<div id="note-1" class="note">
+						Ознакомительный фрагмент
+					</div>
+					<img src="img/p1.png" alt="" id="image-1" class="image">
+					<div id="head-1" class="head" style="top: 50px; left: 1200px;">
+						Животные<br>арктики
+					</div>
+					<div id="text-1" class="text" style="top: 337px; left: 309px;">
+						Северный Ледовитый океан окружен сушей Северной Америки, Европы и Азии, поэтому сухопутным животным достичь Арктики легче, чем Антарктиды.
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<div class="container">
+				<button id="check">Проверить</button>
+				<button id="next">Следующее</button>
+			</div>
+		</footer>
+	</div>
+
+	<script>
+		var text = new DragableItem('text-1', 56, 611);
+		var head = new DragableItem('head-1', 56, 112);
+		document.getElementById('check').onclick = function() {
+			text.solve();
+			head.solve();
+			this.disabled = true;
+		}
+		document.getElementById('next').onclick = function() {
+			window.location.assign('2.html');
+		}
+	</script>
+</body>
+</html>
