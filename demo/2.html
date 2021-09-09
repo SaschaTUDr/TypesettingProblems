@@ -45,7 +45,11 @@
 	</div>
 
 	<script>
-		var block = new SpreadableItem('head-2', 'sep-2', 'text-2', 1.297, 16, 1.922);
+		var block = new ParametrisedController([
+			new ParametrisedItem('head-2', 'line-height', '1.297'),
+			new ParametrisedItem('text-2', 'line-height', '1.922'),
+			new ParametrisedItem('sep-2', 'height', '16px', 6)
+		]);
 		document.getElementById('check').onclick = function() {
 			block.solve();
 			this.disabled = true;
