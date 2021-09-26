@@ -37,7 +37,7 @@ class DragableItem {
 		window.addEventListener('mousemove', mouseMove);
 	}
 	solve() {
-		this.item.classList.add('drag-transition');
+		this.item.classList.add('move-transition');
 		this.item.style.left = this.trueX + 'px';
 		this.item.style.top = this.trueY + 'px';
 

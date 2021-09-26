@@ -30,6 +30,23 @@ class ParametrisedItem {
 		this.isDragged = false;
 		this.x = 0;
 		this.y = 0;
+
+		this.item.classList.add('hover');
+		this.cursorClass = '';
+		switch (dir) {
+		case 1:
+			this.cursorClass = 'cursor-row';
+			break;
+		case 2:
+			this.cursorClass = 'cursor-col';
+			break;
+		case 3:
+			this.cursorClass = 'cursor-move';
+			break;
+		default:
+			this.cursorClass = 'cursor-default';
+		}
+		this.item.classList.add(this.cursorClass);
 		var that = this;
 
 		function mouseDown(event) {
@@ -74,6 +91,8 @@ class ParametrisedItem {
 		window.addEventListener('mousemove', mouseMove);
 	}
 	solve() {
+		this.item.classList.remove('hover');
+		this.item.classList.remove(this.cursorClass);
 		this.item.classList.add(this.property + '-transition');
 		this.item.style[this.property] = this.trueValue;
 		this.item.onmousedown = null;
