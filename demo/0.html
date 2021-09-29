@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="demo.css">
-	<link rel="stylesheet" href="1.css">
+	<link rel="stylesheet" href="0.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="js/spread.js"></script>
 	<title>Тренажёр по вёрстке</title>
@@ -29,22 +29,16 @@
 					Измените расстояния между элементами
 				</div>
 			</div>
-			<div class="center full-size">
-				<div id="group-1">
-					<div id="head-1-0">
-						Полярные птицы
+			<div class="center">
+				<img src="img/p0.png" alt="Problem 0">
+				<div id="group-0">
+					<div class="v-resize active" id="sep-0-0" style="height: 50px;"></div>
+					<div id="head-0">
+						Выбирай лучшее
 					</div>
-					<div class="v-resize active" id="sep-1-0" style="height: 17px;"></div>
-					<div id="text-1-0">
-						Большинство северных птиц — морские. На суше они появляются только для гнездования и выведения птенцов.
-					</div>
-					<div class="v-resize active" id="sep-1-1" style="height: 121px;"></div>
-					<div id="head-1-1">
-						Люрик
-					</div>
-					<div class="v-resize active" id="sep-1-2" style="height: 85px;"></div>
-					<div id="text-1-1">
-						Маленькие чёрно-белые птицы массой всего в 200–250 г заселяют скальные осыпи. В расщелинах среди камней они обустраивают примитивную гнездовую камеру, где, при отсутствии какой бы то ни было выстилки, находится их единственное голубоватое яйцо. 
+					<div class="v-resize active" id="sep-0-1" style="height: 50px;"></div>
+					<div id="text-0">
+						Уже более 20 лет мы работаем для вашего комфорта и уюта. Сейчас компания является лидером продаж на рынке южного региона Республики Казахстан
 					</div>
 				</div>
 			</div>
@@ -55,8 +49,8 @@
 		</main>
 		<footer class="container">
 			<div class="progress">
-				<div class="progress-item">4</div>
 				<div class="progress-item current"></div>
+				<div class="progress-item">·</div>
 				<div class="progress-item">·</div>
 				<div class="progress-item">·</div>
 				<div class="progress-item">·</div>
@@ -74,19 +68,15 @@
 	<script>
 		var block = new ParametrisedController([
 			new ParametrisedItem(
-				'sep-1-0', 'height', '27px',
+				'sep-0-0', 'height', '27px',
 				[4, 8, 12, 16, 20], -30
 			),
 			new ParametrisedItem(
-				'sep-1-1', 'height', '27px',
-				[4, 8, 12, 16, 20], -30
-			),
-			new ParametrisedItem(
-				'sep-1-2', 'height', '27px',
+				'sep-0-1', 'height', '27px',
 				[4, 8, 12, 16, 20], -30
 			)
 		]);
-		$('#next').click({obj: block, page: 1}, checkSolution);
+		$('#next').click({obj: block, page: 0}, checkSolution);
 	</script>
 </body>
 </html>

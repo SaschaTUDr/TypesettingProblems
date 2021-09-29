@@ -6,9 +6,12 @@ class ParametrisedController {
 		this.items.push(item);
 	}
 	solve() {
+		let avg = 0.;
 		this.items.forEach(function(item) {
-			item.solve();
+			avg += item.solve();
 		});
+		avg /= this.items.length;
+		return Math.round(avg);
 	}
 }
 
@@ -18,20 +21,23 @@ class ParametrisedItem {
 	    id          Id of a parametrised element (e.g. 'text-2')
 	    property    CSS property to vary (e.g. 'line-height')
 	    trueValue   Expected value with units (e.g. '24px')
+	    gradeBound  Array(5) of grade boundaries. dv <= [0] -> 5 ...
+	                (e.g. [10, 20, 30, 40, 50])
 	    minValue    Minimal allowed value without units (e.g. 6)
 	    dir         1 = vertical, 2 = horizontal, 3 = both
 	*/
-	constructor(id, property, trueValue, minValue=0, dir=1) {
-		this.item = document.getElementById(id);
+	constructor(id, property, trueValue, gradeBoundaries, minValue=0, dir=1) {
+		this.item = $('#'+id);
 		this.property = property;
 		this.trueValue = trueValue;
 		this.minValue = minValue;
+		this.gradeBoundaries = gradeBoundaries;
 		this.dir = dir;
 		this.isDragged = false;
 		this.x = 0;
 		this.y = 0;
 
-		this.item.classList.add('hover');
+		this.item.addClass('hover');
 		this.cursorClass = '';
 		switch (dir) {
 		case 1:
@@ -46,7 +52,7 @@ class ParametrisedItem {
 		default:
 			this.cursorClass = 'cursor-default';
 		}
-		this.item.classList.add(this.cursorClass);
+		this.item.addClass(this.cursorClass);
 		var that = this;
 
 		function mouseDown(event) {
@@ -66,7 +72,7 @@ class ParametrisedItem {
 			if (that.isDragged) {
 				let dx = event.clientX - that.x;
 				let dy = event.clientY - that.y;
-				let curValue = parseFloat(that.item.style[that.property]);
+				let curValue = parseFloat(that.item.css(that.property));
 				let suffix = '';
 				switch (that.property) {
 				case 'line-height':
@@ -78,23 +84,34 @@ class ParametrisedItem {
 				default:
 				}
 				if ((that.dir & 1) == 1 && curValue + dy >= that.minValue)
-					that.item.style[that.property] = curValue + dy + suffix;
+					that.item.css(that.property, curValue + dy + suffix);
 				if ((that.dir & 2) == 2 && curValue + dx >= that.minValue)
-					that.item.style[that.property] = curValue + dx + suffix;
+					that.item.css(that.property, curValue + dx + suffix);
 				that.x = event.clientX;
 				that.y = event.clientY;
 			}
 		}
 
-		this.item.onmousedown = mouseDown;
-		window.addEventListener('mouseup', mouseUp);
-		window.addEventListener('mousemove', mouseMove);
+		this.item.on('mousedown', mouseDown);
+		$(window).on('mouseup', mouseUp);
+		$(window).on('mousemove', mouseMove);
 	}
 	solve() {
-		this.item.classList.remove('hover');
-		this.item.classList.remove(this.cursorClass);
-		this.item.classList.add(this.property + '-transition');
-		this.item.style[this.property] = this.trueValue;
-		this.item.onmousedown = null;
+		let curValue = parseFloat(this.item.css(this.property));
+		let trueValue = parseFloat(this.trueValue);
+		var dv = Math.abs(curValue - trueValue);
+		var rv = 0;
+		for (var idx = 0; idx < this.gradeBoundaries.length; ++idx) {
+			if (dv <= this.gradeBoundaries[idx]) {
+				rv = 5 - idx;
+				break;
+			}
+		}
+		this.item.removeClass('hover');
+		this.item.removeClass(this.cursorClass);
+		// this.item.addClass(this.property + '-transition');
+		// this.item.css(this.property, this.trueValue);
+		this.item.off('mousedown');
+		return rv;
 	}
 }

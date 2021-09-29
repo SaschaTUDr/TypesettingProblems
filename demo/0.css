@@ -1,0 +1,24 @@
+/* Problem 0 */
+#group-0 {
+	position: absolute;
+	top: 93px;
+	left: 37px;
+}
+#head-0 {
+	font-size: 48px;
+	font-weight: bold;
+	line-height: 0.8;
+	color: var(--t-inverse-color);
+	width: 220px;
+	margin-top: -8px;
+}
+#sep-0-2 {
+	margin-top: -6px;
+}
+#text-0 {
+	font-size: 10px;
+	line-height: 1.1;
+	color: var(--t-inverse-color);
+	width: 214px;
+	margin-top: -3px;
+}
