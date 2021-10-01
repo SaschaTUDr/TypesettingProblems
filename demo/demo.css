@@ -31,7 +31,7 @@ html, body {
 	justify-content: space-between;
 	position: relative;
 }
-header{
+header.container {
 	height: 40px;
 	font-size: 20px;
 }
@@ -47,10 +47,12 @@ header > .right {
 	width: 230px;
 	text-align: right;
 }
-main {
+main.container {
 	margin: 0 auto;
+	padding-left: 0;
+	padding-right: 0;
 	max-width: var(--t-max-width);
-	display: flex;
+	width: var(--t-max-width);
 	justify-content: space-between;
 }
 main > .left,
@@ -72,7 +74,7 @@ main * {
 main .active {
 	pointer-events: auto;
 }
-footer {
+footer.container {
 	height: 85px;
 	display: flex;
 	justify-content: space-between;
