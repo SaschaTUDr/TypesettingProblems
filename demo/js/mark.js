@@ -19,7 +19,7 @@ function checkSolution(e) {
 }
 
 function drawTimer() {
-	drawTimer.timeTotal = 60;
+	drawTimer.timeTotal = 60 / 0.2; // Total_time / Refresh_rate
 	if (typeof drawTimer.timeElapsed == 'undefined') {
 		drawTimer.timeElapsed = 0;
 	}
@@ -28,9 +28,11 @@ function drawTimer() {
 	}
 	var timer = $('#timer');
 	var ctx = timer[0].getContext('2d');
+	ctx.imageSmoothingEnabled = true;
+	ctx.imageSmoothingQuality = 'high';
 	ctx.clearRect(0, 0, timer[0].width, timer[0].height);
 
-	var r = 125;
+	var r = 50;
 	var angle = -Math.PI/2. + 2*Math.PI*drawTimer.timeElapsed/drawTimer.timeTotal + 0.001;
 	ctx.fillStyle = drawTimer.isRunning ? '#e20016' : '#000';
 	ctx.beginPath();
@@ -46,6 +48,6 @@ function drawTimer() {
 
 $(document).ready(function() {
 	drawTimer();
-	window.timerID = setInterval(drawTimer, 1000);
+	window.timerID = setInterval(drawTimer, 200);
 });
 

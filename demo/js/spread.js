@@ -108,6 +108,7 @@ class ParametrisedItem {
 			}
 		}
 		this.item.removeClass('hover');
+		this.item.addClass('final');
 		this.item.removeClass(this.cursorClass);
 		// this.item.addClass(this.property + '-transition');
 		// this.item.css(this.property, this.trueValue);
