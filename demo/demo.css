@@ -3,6 +3,7 @@
 	--t-max-height: 608px;
 	--t-main-color: #000;
 	--t-accent-color: #e20016;
+  --t-accent-color-hover: #c70013;
   --t-accent-color-translucent: #e2001610;
 	--t-inverse-color: #fff;
 	--t-font-regular: 'Futura Now Headline';
@@ -23,7 +24,6 @@ html, body {
 }
 .screen {
 	width: 100%;
-	max-width: var(--t-max-width);
 	height: 100%;
 	margin: 0 auto;
 	display: flex;
@@ -36,7 +36,7 @@ header{
 	font-size: 20px;
 }
 header > .left {
-	flex: 1 1;
+	width: 230px;
 	text-align: left;
 }
 header > .center {
@@ -44,10 +44,12 @@ header > .center {
 	text-align: center;
 }
 header > .right {
-	flex: 1 1;
+	width: 230px;
 	text-align: right;
 }
 main {
+	margin: 0 auto;
+	max-width: var(--t-max-width);
 	display: flex;
 	justify-content: space-between;
 }
@@ -83,6 +85,9 @@ footer {
 	display: flex;
 	align-items: center;
 }
+.container.bottom {
+	align-items: flex-end;
+}
 
 /* Formatting classes */
 
@@ -91,6 +96,9 @@ footer {
 }
 .medium {
 	font-family: var(--t-font-medium), sans-serif;
+}
+.bold {
+	font-weight: 700;
 }
 .hidden {
 	display: none;
@@ -124,7 +132,8 @@ footer {
 #aside-mark {
 	font-size: 100px;
 	font-weight: bold;
-	line-height: 0.9;
+	line-height: 58px;
+	margin-bottom: 17px;
 }
 #aside-out-of {
 	font-size: 16px;
@@ -134,7 +143,7 @@ div.progress {
 }
 div.progress-item {
 	display: inline-block;
-	margin-right: 1em;
+	margin-right: 9px;
 }
 div.progress-item.current {
 	background-color: var(--t-accent-color);
@@ -146,16 +155,23 @@ div.progress-item.current {
 button.primary {
 	background-color: var(--t-accent-color);
 	color: var(--t-inverse-color);
-	font-size: 32px;
+	font-size: 28px;
 	font-family: var(--t-font-medium);
-	padding: 12px 25px;
+	padding: 12.5px 25px 13.5px 25px;
 	border-radius: 6px;
 	border: none;
 	display: inline-block;
+	height: 60px;
+}
+button.primary:hover {
+	background: var(--t-accent-color-hover);
 }
 .v-resize {
 	border-top: dashed 1px var(--t-accent-color);
 	border-bottom: dashed 1px var(--t-accent-color);
+}
+.final {
+	border: none !important;
 }
 
 /* Cursors */

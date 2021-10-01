@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="demo.css">
+	<link rel="stylesheet" href="3.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="js/spread.js"></script>
+	<title>Тренажёр по вёрстке</title>
+</head>
+<body>
+	<div class="screen">
+		<header class="container">
+			<div class="accent medium left">
+				<div class="material-icons">&#xe5e0;</div><span>Задачник по вёрстке</span>
+			</div>
+			<div class="bold center">
+				Правило внутреннего и внешнего
+			</div>
+			<div class="right">
+				<canvas id="timer" width="100" height="100"></canvas>
+			</div>
+		</header>
+		<main class="container">
+			<div class="left">
+				<img src="img/icon-vsize.svg" alt="Resize">
+				<div>
+					Измените расстояния между элементами
+				</div>
+			</div>
+			<div class="center">
+				<img src="img/p3.png" alt="Problem 3">
+				<div id="group-3">
+					<div class="v-resize active" id="sep-3-0" style="height: 23px;"></div>
+					<img src="img/p3-0.png" alt="" id="img-3-0">
+					<div class="v-resize active" id="sep-3-1" style="height: 24px;"></div>
+					<img src="img/p3-1.png" alt="" id="img-3-1">
+				</div>
+			</div>
+			<div class="right">
+				<div id="aside-mark" class="hidden"></div>
+				<div id="aside-out-of" class="hidden">из 5</div>
+			</div>
+		</main>
+		<footer class="container bottom">
+			<div class="progress">
+				<div class="progress-item">4</div>
+				<div class="progress-item">3</div>
+				<div class="progress-item">5</div>
+				<div class="progress-item current"></div>
+				<div class="progress-item">·</div>
+				<div class="progress-item">·</div>
+				<div class="progress-item">·</div>
+				<div class="progress-item">·</div>
+				<div class="progress-item">·</div>
+				<div class="progress-item">·</div>
+			</div>
+			<button class="primary" id="next">Готово</button>
+		</footer>
+	</div>
+	
+	<script src="js/mark.js"></script>
+	<script>
+		var block = new ParametrisedController([
+			new ParametrisedItem(
+				'sep-3-0', 'height', '22px',
+				[4, 8, 12, 16, 20], -30
+			),
+			new ParametrisedItem(
+				'sep-3-1', 'height', '9px',
+				[4, 8, 12, 16, 20], -30
+			)
+		]);
+		$('#next').click({obj: block, page: 3}, checkSolution);
+	</script>
+</body>
+</html>
