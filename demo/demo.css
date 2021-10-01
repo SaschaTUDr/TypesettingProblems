@@ -1,3 +1,21 @@
+/* Fonts */
+@font-face {
+  font-family: "FuturaNowText-Blk";
+  src: url('fonts/FuturaNowTextBlk/font.woff2') format('woff2'), url('fonts/FuturaNowTextBlk/font.woff') format('woff');
+}
+@font-face {
+  font-family: "FuturaNowText-Bd";
+  src: url('fonts/FuturaNowTextBd/font.woff2') format('woff2'), url('fonts/FuturaNowTextBd/font.woff') format('woff');
+}
+@font-face {
+  font-family: "FuturaNowText-Md";
+  src: url('fonts/FuturaNowTextMd/font.woff2') format('woff2'), url('fonts/FuturaNowTextMd/font.woff') format('woff');
+}
+@font-face {
+  font-family: "FuturaNowText-Rg";
+  src: url('fonts/FuturaNowTextRg/font.woff2') format('woff2'), url('webFonts/FuturaNowTextRg/font.woff') format('woff');
+}
+
 :root {
 	--t-max-width: 980px;
 	--t-max-height: 608px;
@@ -6,8 +24,10 @@
   --t-accent-color-hover: #c70013;
   --t-accent-color-translucent: #e2001610;
 	--t-inverse-color: #fff;
-	--t-font-regular: 'Futura Now Headline';
-	--t-font-medium: 'Futura Now Headline Medium';
+	--t-font-regular: 'FuturaNowText-Rg';
+	--t-font-medium: 'FuturaNowText-Md';
+	--t-font-bold: 'FuturaNowText-Md';
+	--t-font-black: 'FuturaNowText-Blk';
 }
 * {
 	box-sizing: border-box;
@@ -98,9 +118,11 @@ footer.container {
 }
 .medium {
 	font-family: var(--t-font-medium), sans-serif;
+	font-weight: medium;
 }
 .bold {
-	font-weight: 700;
+	font-family: var(--t-font-bold), sans-serif;
+	font-weight: bold;
 }
 .hidden {
 	display: none;
@@ -133,6 +155,7 @@ footer.container {
 }
 #aside-mark {
 	font-size: 100px;
+	font-family: var(--t-font-bold), sans-serif;
 	font-weight: bold;
 	line-height: 58px;
 	margin-bottom: 17px;
@@ -158,7 +181,8 @@ button.primary {
 	background-color: var(--t-accent-color);
 	color: var(--t-inverse-color);
 	font-size: 28px;
-	font-family: var(--t-font-medium);
+	font-family: var(--t-font-medium), sans-serif;
+	font-weight: medium;
 	padding: 12.5px 25px 13.5px 25px;
 	border-radius: 6px;
 	border: none;

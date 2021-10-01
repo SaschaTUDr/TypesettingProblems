@@ -1,0 +1,48 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 4186604, 2021-09-28T14:38:20-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: FuturaNowText-Rg by Monotype
+ * URL: https://www.myfonts.com/fonts/mti/futura-now/text-regular/
+ * 
+ * Webfont: FuturaNowText-Md by Monotype
+ * URL: https://www.myfonts.com/fonts/mti/futura-now/text-medium/
+ * 
+ * Webfont: FuturaNowText-Bd by Monotype
+ * URL: https://www.myfonts.com/fonts/mti/futura-now/text-bold/
+ * 
+ * Webfont: FuturaNowText-Blk by Monotype
+ * URL: https://www.myfonts.com/fonts/mti/futura-now/text-black/
+ * 
+ * 
+ * Webfonts copyright: Copyright © 2020 Monotype Imaging Inc. All rights reserved.
+ * 
+ * © 2021 MyFonts Inc
+*/
+
+
+
+  
+@font-face {
+  font-family: "FuturaNowText-Blk";
+  src: url('webFonts/FuturaNowTextBlk/font.woff2') format('woff2'), url('webFonts/FuturaNowTextBlk/font.woff') format('woff');
+}
+@font-face {
+  font-family: "FuturaNowText-Bd";
+  src: url('webFonts/FuturaNowTextBd/font.woff2') format('woff2'), url('webFonts/FuturaNowTextBd/font.woff') format('woff');
+}
+@font-face {
+  font-family: "FuturaNowText-Md";
+  src: url('webFonts/FuturaNowTextMd/font.woff2') format('woff2'), url('webFonts/FuturaNowTextMd/font.woff') format('woff');
+}
+@font-face {
+  font-family: "FuturaNowText-Rg";
+  src: url('webFonts/FuturaNowTextRg/font.woff2') format('woff2'), url('webFonts/FuturaNowTextRg/font.woff') format('woff');
+}
+
