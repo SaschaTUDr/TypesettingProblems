@@ -15,16 +15,16 @@
 			<div class="accent medium left">
 				<div class="material-icons">&#xe5e0;</div><span>Задачник по вёрстке</span>
 			</div>
-			<div class="medium center">
+			<div class="bold center">
 				Правило внутреннего и внешнего
 			</div>
 			<div class="right">
-				<canvas id="timer" width="250" height="250"></canvas>
+				<canvas id="timer" width="100" height="100"></canvas>
 			</div>
 		</header>
 		<main class="container">
 			<div class="left">
-				<img src="img/icon-vsize.png" alt="Resize">
+				<img src="img/icon-vsize.svg" alt="Resize">
 				<div>
 					Измените расстояния между элементами
 				</div>
@@ -53,7 +53,7 @@
 				<div id="aside-out-of" class="hidden">из 5</div>
 			</div>
 		</main>
-		<footer class="container">
+		<footer class="container bottom">
 			<div class="progress">
 				<div class="progress-item">4</div>
 				<div class="progress-item current"></div>
@@ -74,15 +74,15 @@
 	<script>
 		var block = new ParametrisedController([
 			new ParametrisedItem(
-				'sep-1-0', 'height', '27px',
+				'sep-1-0', 'height', '30',
 				[4, 8, 12, 16, 20], -30
 			),
 			new ParametrisedItem(
-				'sep-1-1', 'height', '27px',
+				'sep-1-1', 'height', '43px',
 				[4, 8, 12, 16, 20], -30
 			),
 			new ParametrisedItem(
-				'sep-1-2', 'height', '27px',
+				'sep-1-2', 'height', '22px',
 				[4, 8, 12, 16, 20], -30
 			)
 		]);

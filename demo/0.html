@@ -15,16 +15,16 @@
 			<div class="accent medium left">
 				<div class="material-icons">&#xe5e0;</div><span>Задачник по вёрстке</span>
 			</div>
-			<div class="medium center">
+			<div class="bold center">
 				Правило внутреннего и внешнего
 			</div>
 			<div class="right">
-				<canvas id="timer" width="250" height="250"></canvas>
+				<canvas id="timer" width="100" height="100"></canvas>
 			</div>
 		</header>
 		<main class="container">
 			<div class="left">
-				<img src="img/icon-vsize.png" alt="Resize">
+				<img src="img/icon-vsize.svg" alt="Resize">
 				<div>
 					Измените расстояния между элементами
 				</div>
@@ -32,11 +32,15 @@
 			<div class="center">
 				<img src="img/p0.png" alt="Problem 0">
 				<div id="group-0">
-					<div class="v-resize active" id="sep-0-0" style="height: 50px;"></div>
+					<div class="v-resize active" id="sep-0-0" style="height: 40px;"></div>
 					<div id="head-0">
-						Выбирай лучшее
+						Выбирай
 					</div>
-					<div class="v-resize active" id="sep-0-1" style="height: 50px;"></div>
+					<div class="v-resize active" id="sep-0-1" style="height: 40px;"></div>
+					<div id="head-1">
+						лучшее
+					</div>
+					<div class="v-resize active" id="sep-0-2" style="height: 40px;"></div>
 					<div id="text-0">
 						Уже более 20 лет мы работаем для вашего комфорта и уюта. Сейчас компания является лидером продаж на рынке южного региона Республики Казахстан
 					</div>
@@ -47,7 +51,7 @@
 				<div id="aside-out-of" class="hidden">из 5</div>
 			</div>
 		</main>
-		<footer class="container">
+		<footer class="container bottom">
 			<div class="progress">
 				<div class="progress-item current"></div>
 				<div class="progress-item">·</div>
@@ -68,11 +72,15 @@
 	<script>
 		var block = new ParametrisedController([
 			new ParametrisedItem(
-				'sep-0-0', 'height', '27px',
+				'sep-0-0', 'height', '34px',
 				[4, 8, 12, 16, 20], -30
 			),
 			new ParametrisedItem(
-				'sep-0-1', 'height', '27px',
+				'sep-0-1', 'height', '22px',
+				[4, 8, 12, 16, 20], -30
+			),
+			new ParametrisedItem(
+				'sep-0-2', 'height', '26px',
 				[4, 8, 12, 16, 20], -30
 			)
 		]);
