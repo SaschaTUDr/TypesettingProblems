@@ -1,9 +1,18 @@
 class ParametrisedController {
-	constructor(array=[]) {
+	constructor(array, maxSize) {
 		this.items = array;
+		this.maxSize = maxSize;
+		this.totalSize = 0;
+		var that = this;
+		this.items.forEach(function(item) {
+			item.parent = that;
+			that.totalSize += item.getSize();
+		});
 	}
 	add(item) {
 		this.items.push(item);
+		item.parent = this;
+		this.totalSize += item.getSize();
 	}
 	solve() {
 		let avg = 0.;
@@ -24,7 +33,7 @@ class ParametrisedItem {
 	    gradeBound  Array(5) of grade boundaries. dv <= [0] -> 5 ...
 	                (e.g. [10, 20, 30, 40, 50])
 	    minValue    Minimal allowed value without units (e.g. 6)
-	    dir         1 = vertical, 2 = horizontal, 3 = both
+	    dir         1 = vertical, 2 = horizontal
 	*/
 	constructor(id, property, trueValue, gradeBoundaries, minValue=0, dir=1) {
 		this.item = $('#'+id);
@@ -45,9 +54,6 @@ class ParametrisedItem {
 			break;
 		case 2:
 			this.cursorClass = 'cursor-col';
-			break;
-		case 3:
-			this.cursorClass = 'cursor-move';
 			break;
 		default:
 			this.cursorClass = 'cursor-default';
@@ -74,6 +80,7 @@ class ParametrisedItem {
 				let dy = event.clientY - that.y;
 				let curValue = parseFloat(that.item.css(that.property));
 				let suffix = '';
+
 				switch (that.property) {
 				case 'line-height':
 					dy /= 100.;
@@ -81,12 +88,23 @@ class ParametrisedItem {
 				case 'height':
 					suffix = 'px';
 					break;
-				default:
 				}
-				if ((that.dir & 1) == 1 && curValue + dy >= that.minValue)
+
+				if (that.dir == 1 &&
+					curValue + dy >= that.minValue &&
+					that.parent.totalSize + dy <= that.parent.maxSize
+				) {
 					that.item.css(that.property, curValue + dy + suffix);
-				if ((that.dir & 2) == 2 && curValue + dx >= that.minValue)
+					that.parent.totalSize += dy;
+				}
+				if (that.dir == 2 &&
+					curValue + dx >= that.minValue &&
+					that.parent.totalSize + dx <= that.parent.maxSize
+				) {
 					that.item.css(that.property, curValue + dx + suffix);
+					that.parent.totalSize += dx;
+				}
+				
 				that.x = event.clientX;
 				that.y = event.clientY;
 			}
@@ -95,6 +113,10 @@ class ParametrisedItem {
 		this.item.on('mousedown', mouseDown);
 		$(window).on('mouseup', mouseUp);
 		$(window).on('mousemove', mouseMove);
+	}
+	getSize() {
+		var x = parseFloat(this.item.css(this.property)); 
+		return x;
 	}
 	solve() {
 		let curValue = parseFloat(this.item.css(this.property));
