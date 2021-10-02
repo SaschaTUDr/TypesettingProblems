@@ -13,7 +13,7 @@
 	<div class="screen">
 		<header class="container">
 			<div class="accent medium left">
-				<div class="material-icons">&#xe5e0;</div><span>Задачник по вёрстке</span>
+				<div class="material-icons struts">&#xe5e0;</div><span>Задачник по вёрстке</span>
 			</div>
 			<div class="bold center">
 				Правило внутреннего и внешнего
@@ -55,7 +55,7 @@
 				<div class="progress-item">·</div>
 				<div class="progress-item">·</div>
 			</div>
-			<button class="primary" id="next">Готово</button>
+			<button class="primary" id="next">Готово<div class="material-icons strut">&#xf1df;</div></button>
 		</footer>
 	</div>
 	
@@ -64,9 +64,9 @@
 		var block = new ParametrisedController([
 			new ParametrisedItem(
 				'sep-2-0', 'height', '28px',
-				[4, 8, 12, 16, 20], -30
+				[4, 8, 12, 16, 20]
 			)
-		]);
+		], 55);
 		$('#next').click({obj: block, page: 2}, checkSolution);
 	</script>
 </body>
