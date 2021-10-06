@@ -228,13 +228,16 @@ button.primary:hover {
 /* Cursors */
 
 .cursor-drag {
-	cursor: move;
+	/*cursor: move;*/
+	cursor: url(cursors/drag.svg) 16 16, url(cursors/drag.png) 16 16, move;
 }
 .cursor-col {
-	cursor: col-resize;
+	/*cursor: col-resize;*/
+	cursor: url(cursors/hsize.svg) 16 16, url(cursors/hsize.png) 16 16, col-resize;
 }
 .cursor-row {
-	cursor: row-resize;
+	/*cursor: row-resize;*/
+	cursor: url(cursors/vsize.svg) 16 16, url(cursors/vsize.png) 16 16, row-resize;
 }
 .cursor-default {
 	cursor: default;
