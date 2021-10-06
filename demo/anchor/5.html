@@ -64,26 +64,26 @@
 		var block = new DragableController([
 			new DragableItem(
 				'img-5-0', {x:'20px', y:'22px'},
-				[4, 8, 12, 16, 20],
+				[8, 16, 24, 32, 40],
 				{xmin: 0, ymin: 0, xmax: 658, ymax: 469}
 			),
 			new DragableItem(
 				'img-5-1', {x:'245px', y:'22px'},
-				[4, 8, 12, 16, 20],
+				[8, 16, 24, 32, 40],
 				{xmin: 0, ymin: 0, xmax: 490, ymax: 475}
 			),
 			new DragableItem(
 				'img-5-2', {x:'20px', y:'434px'},
-				[4, 8, 12, 16, 20],
+				[8, 16, 24, 32, 40],
 				{xmin: 0, ymin: 0, xmax: 641, ymax: 454}
 			),
 			new DragableItem(
 				'img-5-3', {x:'219px', y:'435px'},
-				[4, 8, 12, 16, 20],
+				[8, 16, 24, 32, 40],
 				{xmin: 0, ymin: 0, xmax: 438, ymax: 455}
 			)
 		]);
-		$('#next').click({obj: block, page: 5}, checkSolution);
+		$('#next').click({obj: block, nextPage: 6}, checkSolution);
 	</script>
 </body>
 </html>

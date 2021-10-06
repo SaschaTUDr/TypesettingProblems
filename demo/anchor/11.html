@@ -63,21 +63,21 @@
 		var block = new DragableController([
 			new DragableItem(
 				'img-11-0', {x:'65px', y:'72px'},
-				[4, 8, 12, 16, 20],
+				[8, 16, 24, 32, 40],
 				{xmin: 31, ymin: 28, xmax: 348, ymax: 429}
 			),
 			new DragableItem(
 				'img-11-1', {x:'275px', y:'253px'},
-				[4, 8, 12, 16, 20],
+				[8, 16, 24, 32, 40],
 				{xmin: 31, ymin: 28, xmax: 523, ymax: 482}
 			),
 			new DragableItem(
 				'img-11-2', {x:'262px', y:'392px'},
-				[4, 8, 12, 16, 20],
+				[8, 16, 24, 32, 40],
 				{xmin: 31, ymin: 28, xmax: 308, ymax: 434}
 			),
 		]);
-		$('#next').click({obj: block, page: 11}, checkSolution);
+		$('#next').click({obj: block, nextPage: 12}, checkSolution);
 	</script>
 </body>
 </html>

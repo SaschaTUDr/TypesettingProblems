@@ -62,16 +62,16 @@
 		var block = new DragableController([
 			new DragableItem(
 				'img-2-0', {x:'167px', y:'164px'},
-				[4, 8, 12, 16, 20],
+				[8, 16, 24, 32, 40],
 				{xmin: 100, ymin: 40, xmax: 233, ymax: 365}
 			),
 			new DragableItem(
 				'img-2-1', {x:'171px', y:'260px'},
-				[4, 8, 12, 16, 20],
+				[8, 16, 24, 32, 40],
 				{xmin: 100, ymin: 40, xmax: 233, ymax: 381}
 			)
 		]);
-		$('#next').click({obj: block, page: 2}, checkSolution);
+		$('#next').click({obj: block, nextPage: 3}, checkSolution);
 	</script>
 </body>
 </html>
