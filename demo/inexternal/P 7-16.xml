@@ -1,0 +1,59 @@
+<Problem num="7">
+	<Movable initial-top="90px" initial-left="63px" correct-top="79px" correct-left="81" left-min="51px" top-min="54px" left-max="354px" top-max="222px" />
+	<Image />
+	<Movable initial-top="197px" initial-left="64px" correct-top="192px" correct-left="83" left-min="51px" top-min="54px" left-max="354px" top-max="222px" />
+	<Image />
+</Problem>
+
+<Problem num="8">
+	<Group top="285px" left="69px" max-total-separator-height="141px" text-align="center">
+	<Separator initial-height="42px" correct-height="15px"/>
+	<Image />
+	<Separator initial-height="15px" correct-height="25px"/>
+	<Image />
+	<Separator initial-height="12px" correct-height="32px"/>
+	<Image />
+	<Separator initial-height="46px" correct-height="14px"/>
+	<Image />
+	</Group>
+</Problem>
+
+<Problem num="9">
+	<Group top="268px" left="127px" max-total-separator-height="256px" text-align="center" >
+		<Separator initial-height="17px" correct-height="11px"/>
+		<Image />
+		<Separator initial-height="21px" correct-height="17px"/>
+		<Image />
+		<Separator initial-height="38px" correct-height="25px"/>
+		<Image />
+	</Group>
+</Problem>
+
+<Problem num="10">
+	<Group top="201px" left="137px" max-total-separator-height="227px" text-align="center">
+	<Separator initial-height="15px" correct-height="20px"/>
+	<Image />
+	<Separator initial-height="14px" correct-height="2px"/>
+	<Image />
+	<Separator initial-height="12px" correct-height="16px"/>
+	<Image />
+	<Separator initial-height="11px" correct-height="6px"/>
+	<Image />
+
+<Problem num="15">
+	<Group top="67px" left="95px" max-total-separator-height="464px" text-align="center">
+		<Separator initial-height="53px" correct-height="62px"/>
+		<Image />
+		<Separator initial-height="88px" correct-height="17px"/>
+		<Image />
+	</Group>
+</Problem>
+
+<Problem num="16">
+	<Group top="223px" left="123px" max-total-separator-height="281px" text-align="center">
+		<Separator initial-height="53px" correct-height="21px"/>
+		<Image />
+		<Separator initial-height="26 px" correct-height="21px"/>
+		<Image />
+	</Group>
+</Problem>

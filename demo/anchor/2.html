@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="../demo.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="../js/drag.js"></script>
+	<title>Тренажёр по вёрстке</title>
+</head>
+<body>
+	<div class="screen">
+		<header class="container">
+			<div class="accent medium left">
+				<a href="/main.html">
+					<div class="material-icons struts">&#xe5e0;</div><span>Задачник по вёрстке</span>
+				</a>
+			</div>
+			<div class="bold center">
+				Якорные объекты
+			</div>
+			<div class="right">
+				<canvas id="timer" width="100" height="100"></canvas>
+			</div>
+		</header>
+		<main class="container">
+			<div class="left">
+				<img src="../img/icon-drag.svg" alt="Drag">
+				<div>
+					Найдите место элементам в рамочке
+				</div>
+			</div>
+			<div class="center">
+				<img src="img/p2.jpg" alt="Problem">
+				<img class="dragable active" id="img-2-0" src="img/p2-0.png" alt="" style="top: 149px; left: 157px;">
+				<img class="dragable active" id="img-2-1" src="img/p2-1.png" alt="" style="top: 308px; left: 146px;">
+			</div>
+			<div class="right">
+				<div id="aside-mark" class="hidden"></div>
+				<div id="aside-out-of" class="hidden">из 5</div>
+			</div>
+		</main>
+		<footer class="container bottom">
+			<div class="progress">
+				<div class="progress-item current"></div>
+				<div class="progress-item">·</div>
+				<div class="progress-item">·</div>
+				<div class="progress-item">·</div>
+				<div class="progress-item">·</div>
+				<div class="progress-item">·</div>
+				<div class="progress-item">·</div>
+				<div class="progress-item">·</div>
+				<div class="progress-item">·</div>
+				<div class="progress-item">·</div>
+			</div>
+			<button class="primary" id="next">Готово<div class="material-icons strut">&#xf1df;</div></button>
+		</footer>
+	</div>
+	
+	<script src="../js/mark.js"></script>
+	<script>
+		var block = new DragableController([
+			new DragableItem(
+				'img-2-0', {x:'167px', y:'164px'},
+				[4, 8, 12, 16, 20],
+				{xmin: 100, ymin: 40, xmax: 233, ymax: 365}
+			),
+			new DragableItem(
+				'img-2-1', {x:'171px', y:'260px'},
+				[4, 8, 12, 16, 20],
+				{xmin: 100, ymin: 40, xmax: 233, ymax: 381}
+			)
+		]);
+		$('#next').click({obj: block, page: 2}, checkSolution);
+	</script>
+</body>
+</html>

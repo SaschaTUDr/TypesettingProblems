@@ -1,0 +1,77 @@
+<Problem num="1">
+	<Movable initial-top="121px" initial-left="46px" correct-top="30px" correct-left="27" left-min="0px" top-min="0px" left-max="649px" top-max="360px" />
+	<Image />
+	<Movable initial-top="149px" initial-left="158px" correct-top="35px" correct-left="677" left-min="0px" top-min="0px" left-max="703px" top-max="421px" />
+	<Image />
+</Problem>
+
+<Problem num="2">
+	<Movable initial-top="149px" initial-left="157px" correct-top="164px" correct-left="167" left-min="100px" top-min="40px" left-max="233px" top-max="365px" />
+	<Image />
+	<Movable initial-top="308px" initial-left="146px" correct-top="260px" correct-left="171" left-min="100px" top-min="40px" left-max="233px" top-max="381px" />
+	<Image />
+</Problem>
+
+
+<Problem num="3">
+	<Movable initial-top="382px" initial-left="120px" correct-top="499px" correct-left="24px" left-min="0px" top-min="0px" left-max="269px" top-max="517px" />
+	<Movable initial-top="58px" initial-left="81px" correct-top="14px" correct-left="356px" left-min="0px" top-min="0px" left-max="370px" top-max="593px" />
+</Problem>
+
+<Problem num="4">
+	<Movable initial-top="31px" initial-left="23px" correct-top="275px" correct-left="21px" left-min="0px" top-min="0px" left-max="644px" top-max="480px" />
+	<Movable initial-top="221px" initial-left="151px" correct-top="315px" correct-left="21px" left-min="0px" top-min="0px" left-max="463px" top-max="356px" />
+</Problem>
+
+<Problem num="5">
+	<Movable initial-top="118px" initial-left="44px"  correct-top="22px"  correct-left="20px"  left-min="0px" top-min="0px" left-max="658px" top-max="469px" />
+	<Movable initial-top="96px"  initial-left="246px" correct-top="22px"  correct-left="245px" left-min="0px" top-min="0px" left-max="490px" top-max="475px" />
+	<Movable initial-top="375px" initial-left="61px"  correct-top="434px" correct-left="20px"  left-min="0px" top-min="0px" left-max="641px" top-max="454px" />
+	<Movable initial-top="386px" initial-left="217px" correct-top="435px" correct-left="219px" left-min="0px" top-min="0px" left-max="438px" top-max="455px" />
+</Problem>
+
+<Problem num="6">
+	<Movable initial-top="122px"  initial-left="42px" correct-top="27px"  correct-left="25px"  left-min="0px" top-min="0px" left-max="457px" top-max="540px" />
+	<Movable initial-top="217px"  initial-left="74px" correct-top="203px" correct-left="25px"  left-min="0px" top-min="0px" left-max="295px" top-max="235px" />
+</Problem>
+
+<Problem num="7">
+	<Movable initial-top="139px"  initial-left="25px"  correct-top="117px"  correct-left="126px"  left-min="0px" top-min="0px" left-max="253px" top-max="274px" />
+	<Movable initial-top="417px"  initial-left="366px" correct-top="395px"  correct-left="234px"  left-min="0px" top-min="0px" left-max="468px" top-max="432px" />
+</Problem>
+
+<Problem num="8">
+	<Movable initial-top="365px"  initial-left="82px"  correct-top="274px"  correct-left="79px"  left-min="51px" top-min="141px" left-max="113px" top-max="384px" />
+</Problem>
+
+<Problem num="9">
+	<Movable initial-top="136px" initial-left="350px" correct-top="45px" correct-left="379px" left-min="0px" top-min="0px" left-max="395px" top-max="420px" />
+	<Movable initial-top="280px" initial-left="360px" correct-top="379px" correct-left="464px" left-min="0px" top-min="0px" left-max="565px" top-max="417px" />
+</Problem>
+
+
+<Problem num="10">
+	<Movable initial-top="234px" initial-left="14px" correct-top="533px" correct-left="243px" left-min="0px" top-min="0px" left-max="258px" top-max="554px" />
+	<Movable initial-top="122px" initial-left="231px" correct-top="105px" correct-left="26px" left-min="0px" top-min="0px" left-max="257px" top-max="280px" />
+</Problem>
+
+<Problem num="11">
+	<Movable initial-top="103px" initial-left="100px" correct-top="72px" correct-left="65" top-min="28px" left-min="31px"  top-max="429px" left-max="348px" />
+	<Image />
+	<Movable initial-top="272px" initial-left="348px" correct-top="253px" correct-left="275" top-min="28px" left-min="31px"  top-max="482px" left-max="523px" />
+	<Image />
+	<Movable initial-top="383px" initial-left="262px" correct-top="392px" correct-left="262" top-min="28px" left-min="31px"  top-max="434px" left-max="308px" />
+	<Image />
+</Problem>
+
+<Problem num="12">
+	<Movable initial-top="60px" initial-left="62px" correct-top="94px" correct-left="130" top-min="34px" left-min="53px"  top-max="158px" left-max="204px" />
+	<Image />
+	<Movable initial-top="108px" initial-left="303px" correct-top="422px" correct-left="252" top-min="38px" left-min="55px"  top-max="475px" left-max="335px" />
+	<Image />
+</Problem>
+
+<Problem num="13">
+	<Movable initial-top="23px" initial-left="31px" correct-top="411px" correct-left="23px" left-min="0px" top-min="0px" left-max="436px" top-max="428px" />
+	<Movable initial-top="59px" initial-left="24px" correct-top="29px" correct-left="23px" left-min="0px" top-min="0px" left-max="94px" top-max="246px" />
+</Problem>

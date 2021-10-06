@@ -1,7 +1,7 @@
 function checkSolution(e) {
 	clearInterval(window.timerID);
 	var obj = e.data.obj;
-	var page = e.data.page;
+	var nextPage = e.data.nextPage;
 	let mark = obj.solve();
 	console.log(`Mark: ${mark}`);
 	let asideMark = $('#aside-mark');
@@ -11,7 +11,7 @@ function checkSolution(e) {
 	asideOutOf.removeClass('hidden');
 	$('#next').html('Дальше <div class="material-icons">&#xf1df</div>');
 	$('#next').click(function() {
-		window.location.assign(`${1+page}.html`);
+		window.location.assign(`${nextPage}.html`);
 	});
 	drawTimer.isRunning = false;
 	--drawTimer.timeElapsed;
