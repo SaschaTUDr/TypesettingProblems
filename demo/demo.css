@@ -217,6 +217,10 @@ button.primary:hover {
 	border-top: dashed 1px var(--t-accent-color);
 	border-bottom: dashed 1px var(--t-accent-color);
 }
+.h-resize {
+	border-left: dashed 1px var(--t-accent-color);
+	border-right: dashed 1px var(--t-accent-color);
+}
 .dragable {
 	border: dashed 1px var(--t-accent-color);
 	position: absolute;

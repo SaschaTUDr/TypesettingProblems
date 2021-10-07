@@ -48,7 +48,7 @@ class ParametrisedItem {
 
 		this.item.addClass('hover');
 		this.cursorClass = '';
-		switch (dir) {
+		switch (this.dir) {
 		case 1:
 			this.cursorClass = 'cursor-row';
 			break;
@@ -83,9 +83,11 @@ class ParametrisedItem {
 
 				switch (that.property) {
 				case 'line-height':
-					dy /= 100.;
+					dy *= 0.2;
+					suffix = 'px'
 					break;
 				case 'height':
+				case 'width':
 					suffix = 'px';
 					break;
 				}
